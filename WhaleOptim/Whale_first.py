@@ -52,3 +52,4 @@ class WhaleOptimizationAlgorithm:
         whale_position = np.random.uniform(low=-100, high=100, size=(self.size_pop, self.n_dim))  # 随机初始化鲸鱼群体
         # 1.2.2 迭代寻优
         for iter_num in range(self.max_iter):
+            pass

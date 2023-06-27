@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 import time
 
 '''
-改变问题规模时需要改动的参数：工件参数workpiece，工序数目process，机器数目machine，
-机器选择部分的范围上限，迭代次数（规模小的时候可能降低迭代次数）
+改变问题规模时需要改动的参数:工件参数workpiece,工序数目process,机器数目machine,
+机器选择部分的范围上限,迭代次数（规模小的时候可能降低迭代次数）
 '''
 
 #读取原始数据
@@ -23,7 +23,7 @@ with open("data_first.txt") as f:
         
 #对工序部分进行处理
 def handle(x):
-    #输入：粒子的位置，输出：对工序部分处理后的列表
+    #输入:粒子的位置,输出:对工序部分处理后的列表
     piece_mark = np.zeros(workpiece) #统计工序的标志
     array = [] #经过处理后的工序列表
     for i in range(total_process):
@@ -55,7 +55,7 @@ def initpopvfit():
     return pop,v,fitness
 
 def calculate(x):
-    # 输入:粒子位置，输出:粒子适应度值
+    # 输入:粒子位置,输出:粒子适应度值
     Tm = np.zeros(machine) #每个机器上的完工时间
     Te = np.zeros((workpiece, process)) #每个工序的完成时间
     array = handle(x) #经过处理后的工序部分
@@ -75,7 +75,7 @@ def calculate(x):
 def getinitbest(fitness,pop):
     # 群体最优的粒子位置及其适应度值
     gbestpop,gbestfitness = pop[fitness.argmin()].copy(),fitness.min()
-    #个体最优的粒子位置及其适应度值,使用copy()使得对pop的改变不影响pbestpop，pbestfitness类似
+    #个体最优的粒子位置及其适应度值,使用copy()使得对pop的改变不影响pbestpop,pbestfitness类似
     pbestpop,pbestfitness = pop.copy(),fitness.copy()
     return gbestpop,gbestfitness,pbestpop,pbestfitness
 
@@ -154,10 +154,12 @@ if __name__ == "__main__":
             gbestfitness = pbestfitness.min()
             gbestpop = pop[pbestfitness.argmin()].copy()
 
-    print("按照完全随机初始化的pso算法求得的最好的最大完工时间：",min(pso_base))
-    print("按照完全随机初始化的pso算法求得的最好的工艺方案：",gbestpop)
+    print("按照完全随机初始化的pso算法求得的最好的最大完工时间:",min(pso_base))
+    print("按照完全随机初始化的pso算法求得的最好的工艺方案:",gbestpop)
     end = time.time()
-    print("整个迭代过程所耗用的时间：{:.2f}s".format(end-begin))
+    print("整个迭代过程所耗用的时间:{:.2f}s".format(end-begin))
+    plt.rcParams ['font.sans-serif']= ['SimHei'] 
+    plt.rcParams ['axes.unicode_minus'] = False
     fig = plt.figure(figsize=(10,5))
     ax1 = fig.add_subplot(121)
     ax1.set_title("全局最优解的变化情况")
